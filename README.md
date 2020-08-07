@@ -1,5 +1,5 @@
-## Create React App Visualization
+## Interactive Composable Visualizations
 
-This assessment was bespoke handcrafted for rick.
+This assessment was bespoke hadnrcatfed for ricK.
 
 Read more about this assessment [here](https://react.eogresources.com)
