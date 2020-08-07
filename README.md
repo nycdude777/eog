@@ -10,7 +10,7 @@ Read more about this assessment [here](https://react.eogresources.com)
 - [x] Preliminary setup chores
 - [x] Get metrics list to load (Implement urql context)
 - [x] Get subscription streams working
-- [ ] Add exograph, setup composition workspace
+- [x] Add exograph, setup composition workspace
 - [ ] Render metrics as Composition Components
 - [ ] Implement a simple composable Line Chart
 

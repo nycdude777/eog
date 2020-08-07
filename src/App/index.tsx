@@ -6,8 +6,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import 'react-toastify/dist/ReactToastify.css';
 import * as app from '../components';
 import theme from './theme';
+
 import './css/flex.css';
 import './css/additive.css';
+import './css/exograph.css';
+import './css/menu.css';
+import './css/accordion.css';
 
 import createStore from '../store';
 import UrqlContext from './urqlContext';
