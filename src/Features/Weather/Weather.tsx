@@ -57,13 +57,7 @@ const Weather = () => {
 
   const { temperatureinFahrenheit, description, locationName } = useSelector(selectWeather);
 
-  const [result] = useUrqlQuery({
-    query,
-    variables: {
-      latLong,
-    },
-  });
-
+  const [result] = useUrqlQuery({query, variables: { latLong } });
   const { fetching, data, error } = result;
 
   useEffect(() => {
