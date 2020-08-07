@@ -278,3 +278,11 @@ textarea::-webkit-resizer {
     width: 100%;
     padding-top: 100%;
 }
+
+.border {
+    border: thin solid rgba(128,128,128,0.8);
+}
+
+.border-dashed {
+    border: thin dashed rgba(128,128,128,0.5);
+}
