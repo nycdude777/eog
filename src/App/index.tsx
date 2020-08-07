@@ -10,6 +10,7 @@ import './css/flex.css';
 import './css/additive.css';
 
 import createStore from '../store';
+import UrqlContext from './urqlContext';
 
 const store = createStore();
 
@@ -17,11 +18,13 @@ const App = () => (
   <MuiThemeProvider theme={theme}>
     <CssBaseline />
     <Provider store={store}>
+      <UrqlContext>
         <app.Wrapper>
           <app.Header />
           <app.Dashboard />
           <ToastContainer />
         </app.Wrapper>
+      </UrqlContext>
     </Provider>
   </MuiThemeProvider>
 );
