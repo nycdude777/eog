@@ -17,5 +17,6 @@
 .align.self.stretch { align-self: stretch; }
 .flex > .grow { flex-grow: 1; }
 .flex > .shrink { flex-shrink: 1; }
-.flex.row.spaced>*:not(:last-child) { margin-right: 15px; }
-.flex.column.spaced>*:not(:last-child) { margin-right: 15px; }
+.flex.row.spaced>*:not(:last-child) { margin-right: 5px; }
+.flex.column.spaced>*:not(:last-child) { margin-bottom: 5px; }
+.flex.cell { justify-content: center; align-items: center;}
