@@ -1,9 +1,9 @@
 ## Interactive Composable Visualizations
 
 This assessment was bespoke hadnrcatfed for ricK.
-
 Read more about this assessment [here](https://react.eogresources.com)
 
+![Screenshot 1](https://github.com/nycdude777/eog/blob/master/screenshot1.jpg)
 
 
 # TO DO
