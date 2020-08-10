@@ -11,26 +11,6 @@ export default () => (
 
         <xo.GraphNode 
             menuItem
-            name="Gauge" 
-            allowDrag={false}
-            allowDrop={true} 
-            placeholder={<GaugeIcon />}
-            render={(props, ref) => {
-                const { data, children, datasources, scope, setData, className, ...other } = props;
-                return (
-                    <div ref={ref} className={`flex canvas ${className}`} {...other}>
-                        {/* TODO display prop strip */}
-                    </div>
-                );
-            }} 
-            meta={{
-                type: 'widget.gauge',
-                accept: [ 'data.source' ],
-            }}
-        />
-
-        <xo.GraphNode 
-            menuItem
             name="LineChart" 
             allowDrag={false}
             allowDrop={true} 

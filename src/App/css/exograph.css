@@ -40,7 +40,7 @@
     bottom: 0;
 }
 
-.menu div {
+.exograph .menu > div {
     padding: unset;
 }
 
