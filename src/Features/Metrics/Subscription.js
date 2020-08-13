@@ -18,17 +18,10 @@ export default (props) => {
     const [{ data, fetching, error }] = useSubscription({ query: topic });
 
     useEffect(() => {
-        
         if (data) {
-
-            // debugger;
-            // dispatch this datapoint...
-            console.log(data['newMeasurement']);
-
             if (error) {
                 dispatch(actions.measurementsApiErrorReceived({ error: error.message }));
             }
-            
             if (data) {
                 dispatch(actions.measurementReceived(data));
             }

@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import xo from 'exograph';
 import xod from './data';
 import _ from 'lodash';
 import Metrics from '../../../Features/Metrics';
+//import History from '../../../Features/Measurements/history';
+import executeHistoryQuery from './executeHistoryQuery';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 
 import {camelToSentenceCase} from './util/string';
 import Typography from '@material-ui/core/Typography';
+import { useClient } from 'urql';
 
 export default () => {
 
-    const initialized = React.useRef();
+    const metricsQueryInitialized = React.useRef(false);
 
     const metrics = useSelector((state) => {
         // Life gets a bit easier when using lodash.get() to do multi-level invokations...
@@ -20,14 +23,14 @@ export default () => {
         return _.get(state, 'metrics.getMetrics');
     });
         
-    if (!initialized.current) {
-        initialized.current = true;
+    if (metricsQueryInitialized.current === false) {
+        metricsQueryInitialized.current = true;
         return <Metrics />;
     }
 
     if (metrics.length === 0) return null;
 
-    return <div className="flex column spaced">
+    return <div className="flex column spaced" >
         {
             metrics.map((key, index) => {
                 return <MetricSourceNode key={key} name={key} />
@@ -40,34 +43,56 @@ export default () => {
 
 const MetricSourceNode = (props) => {
 
-    // const relay = React.useRef(new xod.Relay());
+    const relay = React.useRef(new xod.Relay()).current;
+    const status = React.useRef({ historyRequested: false }).current;
+
     const data = useSelector((state) => {
-        // Life gets a bit easier when using lodash.get() to do multi-level invokations...
-        //   (i.e. its safe because it auto-checks for nulls and doesn't blow up.
         const m = _.get(state, `measurements.${props.name}`);
         return m;
     });
     
-    const relay = React.useRef(new xod.Relay()).current;
+    const historyAvailable = data && data.buffer;
 
+    // Propagate new measurement
+    const latestMeasurement = data ? data.latest : {};
     useEffect(()=>{
-        if (data) {
-            relay.tick(data);
+        if (latestMeasurement.at) {
+            relay.tick({at: latestMeasurement.at, key: latestMeasurement.metric, value: latestMeasurement.value });
         }
-    }, [data]);
+    }, [latestMeasurement.at]);
 
-    return <xo.GraphNode 
-        menuItem
-        name={props.name} 
-        placeholder={<MeasurementDisplay {...data} />}
-        render={(props) => {
-            return relay;
-        }}
-        meta={{
-            type: 'data.source',
-            isDatasource: true,
-        }}
-    />
+    
+    // History
+    if (historyAvailable && !relay.history) {
+        relay.setHistory(data.buffer.stitch().map(x=>({ at: x.at, key: x.metric, value: x.value })), {at: latestMeasurement.at, key: latestMeasurement.metric, value: latestMeasurement.value });
+    }
+
+    const client = useClient();
+    const dispatch = useDispatch();
+    const requestHistory = () => {
+        if (historyAvailable) return;
+        if (status.historyRequested) return;
+        status.historyRequested = true;
+        executeHistoryQuery(props.name, client, dispatch);
+    }
+    
+    return <>
+        {/* <History metric={props.name} enabled={historyEnabled} /> */}
+        <xo.GraphNode 
+            menuItem
+            id={props.name}
+            name={props.name} 
+            placeholder={<MeasurementDisplay {...latestMeasurement} />}
+            render={(props) => {
+                requestHistory();
+                return relay;
+            }}
+            meta={{
+                type: 'data.source',
+                isDatasource: true,
+            }}
+        />
+    </>
 }
 
 const MeasurementDisplay = ({at, metric, value, unit}) => {
@@ -84,19 +109,3 @@ const MeasurementDisplay = ({at, metric, value, unit}) => {
         </div>
     </Paper>
 }
-
-// const MeasurementDisplay = ({at, metric, value, unit}) => {
-//     return <div className="relative placeholder"> 
-//         <div className="fill canvas flex align-center">
-//             <div className="flex column">
-//                 <Typography variant="overline" display="block" gutterBottom>
-//                     {metric}
-//                 </Typography>
-//                 <Typography variant="h4" gutterBottom>
-//                     {value}
-//                     <sub>{unit}</sub>
-//                 </Typography>
-//             </div>
-//         </div>
-//     </div>
-// }

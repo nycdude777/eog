@@ -13,9 +13,10 @@ export default (props, ref) => {
     const now = Date.now();
 
     let series = Array.isArray(data) 
-        ? Object.keys(data[data.length-1]).filter(k => k!=='time')
+        ? Object.keys(data[data.length-1]).filter(k => k!=='at')
         : [];
 
+    // if (data) debugger;
     // pick a random color 
     const [colorOffset] = React.useState(getRandomColor());
 
@@ -28,7 +29,7 @@ export default (props, ref) => {
                     <XAxis 
                         tickCount={6}
                         tick={false}
-                        dataKey="time" 
+                        dataKey="at" 
                         scaleToFit={false}
                         tickFormatter={(tick) => {
                             const elapsedMs = now - tick;
@@ -47,7 +48,7 @@ export default (props, ref) => {
                                     type="monotone" 
                                     dataKey={key}
                                     stroke={colors[(index + colorOffset) % colors.length]} 
-                                    strokeWidth={2}
+                                    strokeWidth={1}
                                     dot={false} 
                                 />
                             )
