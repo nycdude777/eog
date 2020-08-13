@@ -9,7 +9,13 @@ import Containers from './containers';
 import Widgets from './widgets';
 import Sources from './sources';
 
+import layoutJson from './layoutJson';
+
 import MetricsAsSources from './metricsAsSources';
+
+import './css/workspace.css';
+
+import Info from './Info';
 
 export default (props) => {
 
@@ -20,12 +26,13 @@ export default (props) => {
     };
 
     return (
-        <div className="layout fill" style={{top: 64}} >
-            <xo.GraphContextProvider>
+        <div className="dark-mode layout fill" style={{top: 64}} >
+            <xo.GraphContextProvider layout={layoutJson} >
                 <xo.Graph />
                 <xo.Menu> 
+                    <Info />
                     <Subscription />
-                    <xo.Accordion data={data} />
+                    <xo.Accordion data={data} defaultKey="metrics"/>
                 </xo.Menu>
             </xo.GraphContextProvider>
         </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import xo from 'exograph';
 
 export default () => (
-    <div className="flex column padded items">
+    <div className="flex wrap padded items">
 
         <xo.GraphNode 
             menuItem
@@ -29,7 +29,7 @@ export default () => (
             meta={{
                 type: 'container.row',
                 accept: ['container'],
-                reject: ['container.row'],
+                reject: ['container.row', 'data.source'],
             }}
         />
 
@@ -58,7 +58,7 @@ export default () => (
             meta={{
                 type: 'container.column',
                 accept: ['container'],
-                reject: ['container.column'],
+                reject: ['container.column', 'data.source'],
             }}
         />
 
@@ -84,7 +84,7 @@ export default () => (
             }} 
             meta={{
                 type: 'container.widget.tight',
-                accept: ['container', 'widget', 'data.source'],
+                accept: ['container', 'widget'],
                 reject: ['container.widget'],
                 maxChildren: 1,
             }}
@@ -114,7 +114,7 @@ export default () => (
             }} 
             meta={{
                 type: 'container.widget.growth',
-                accept: ['container', 'widget', 'data.source'],
+                accept: ['container', 'widget'],
                 reject: ['container.widget'],
                 maxChildren: 1,
             }}
@@ -124,8 +124,8 @@ export default () => (
 )
 
 const RowLayout = (props) => {
-    return <div className="relative placeholder"> 
-        <div className="fill flex row border spaced" style={{padding: '5px'}}>
+    return <div className="relative placeholder hover-highlight"> 
+        <div className="fill flex row spaced" style={{padding: '5px'}}>
             <div className="grow align-self-stretch solid"></div>
             <div className="grow align-self-stretch solid"></div>
             
@@ -135,8 +135,8 @@ const RowLayout = (props) => {
 }
 
 const ColLayout = (props) => {
-    return <div className="relative placeholder"> 
-        <div className="fill flex column border spaced" style={{padding: '5px'}}>
+    return <div className="relative placeholder hover-highlight"> 
+        <div className="fill flex column spaced" style={{padding: '5px'}}>
             <div className="grow align-self-stretch solid"></div>
             <div className="grow align-self-stretch solid"></div>
         </div>
@@ -144,8 +144,8 @@ const ColLayout = (props) => {
 }
 
 const TightLayout = (props) => {
-    return <div className="relative placeholder"> 
-        <div className="fill border" style={{padding: '5px'}}>
+    return <div className="relative placeholder hover-highlight"> 
+        <div className="fill" style={{padding: '5px'}}>
             <div className="solid absolute" style={{width: "50%", height: "50%"}}> 
             </div>
         </div>
@@ -153,8 +153,8 @@ const TightLayout = (props) => {
 }
 
 const GrowthLayout = (props) => {
-    return <div className="relative placeholder"> 
-        <div className="fill flex border column" style={{padding: '5px'}}>
+    return <div className="relative placeholder hover-highlight"> 
+        <div className="fill flex column" style={{padding: '5px'}}>
             <div className="flex grow"> 
                 <div className="grow align self stretch solid"></div>
                 <div className="align-self-stretch flex" style={{fontSize: '2rem'}}>
