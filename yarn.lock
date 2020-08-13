@@ -4251,9 +4251,9 @@ exit@^0.1.2:
   integrity sha1-BjJjj42HfMghB9MKD/8aF8uhzQw=
 
 exograph@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/exograph/-/exograph-1.0.1.tgz#fb2ae843b9e1910e94b1b1ff2499beb57aeee504"
-  integrity sha512-eTrrd/bShxKCTVS4GqmcL0PTiiKDWtN06EP/nhNcrkF3wrvFQtjDtgVHOeNN1sFlgaZErcrQMZtY/gLmmYxvxg==
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/exograph/-/exograph-1.1.2.tgz#b69508df977e4d75d4f8af44828bff3ee4d3b067"
+  integrity sha512-tqxbNv89YTZbXIDwgCe3CMccT45fHwS3rX/2OXE94WjoLjR+0XWo0OiRPFI9Ua+czjxHPdU6KdkPHA+6/Ow5gA==
 
 expand-brackets@^2.1.4:
   version "2.1.4"

@@ -1,10 +1,10 @@
-import Aggregator from './Aggregator';
+import TimeseriesAggregator from './TimeseriesAggregator';
 
-const BUFFER_LENGTH = 1000;
+
 
 export default function initDataAggregator (props) {
 
-    const { data, children, datasources, scope, setData, className, ...other } = props;
+    const { bufferLength, projectPoint, projectSet, data, children, datasources, scope, setData, className, ...other } = props;
     
     const dsKeys = Object.keys(datasources);
     if (!dsKeys.length) return;
@@ -17,29 +17,29 @@ export default function initDataAggregator (props) {
     }
 
     if (!scope.aggregator) {
-        scope.aggregator = new Aggregator({
-            bufferLength: BUFFER_LENGTH,
+        scope.aggregator = new TimeseriesAggregator({
+            timeKey: 'at',
+            interval: 1000,
+            bufferLength: bufferLength,
             setData: props.setData,
-            createDataPoint: (vector) => ({ 
-                time: Date.now(), 
-                ...vector 
-            }),
-            projectData: (data) => ({ 
-                timeseries: data
-            })
+            projectPoint,
+            projectSet,
         });
     }
 
     // add missing datasources
     for (let key in datasources) {
         if (!Object.prototype.hasOwnProperty.call(scope.aggregator.datasources, key)) {
+
             const datasource = datasources[key].render();
-            const subscribe = (ds, log) => {
-                ds.onTick((data) => {
-                    log(data);
-                });
+
+            const subscribe = (ds, setPoint, setHistory) => {
+                ds.onTick((data) => setPoint(data));
+                ds.onHistory((data, latest) => setHistory(data, latest));
             };
+
             scope.aggregator.addDatasource(key, datasource, subscribe);
+
             datasource.start();
             // TODO: If datasource needs to be removed, you need to call .stop() on it first
         }

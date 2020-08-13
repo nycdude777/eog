@@ -1,9 +1,9 @@
 import Relay from './Relay';
 import FunctionGenerator from './FunctionGenerator';
-import Aggregator from './Aggregator';
+import TimeseriesAggregator from './TimeseriesAggregator';
 
 export default {
-    Aggregator,
+    TimeseriesAggregator,
     FunctionGenerator,
     Relay,
 };

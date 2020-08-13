@@ -1,19 +1,52 @@
 export default class CircularBuffer {
     
+    array;
+    cursor;
+
     constructor(length) {
-        this.array = new Array(length).fill(null);
-        this.cursor = 0;
+        if (length) {
+            this.array = length ? new Array(length).fill(null) : null;
+            this.cursor = length ? 0 : -1;
+        }
     }
 
-    write(callback) {
+    static fromArray(source) {
+        const buffer = new CircularBuffer();
+        buffer.array = Array.from(source);
+        buffer.cursor = 0;
+        return buffer;
+    }
+
+    ensureSlot() {
         // create a reusable holder object (if one doesn't exist)
         if(!this.array[this.cursor]) {
             this.array[this.cursor] = {}; 
         }
+    }
+
+    write(callback) {
+        this.ensureSlot();
         callback(this.cursor, this.array);
         this.cursor++;
         if (this.cursor === this.array.length) {
             this.cursor = 0;
+        }
+    }
+
+    writeAt(index, callback) {
+        this.ensureSlot();
+        callback(index, this.array);
+    }
+
+    iterateReverse(callback) {
+        let cursor = this.cursor - 1;
+        let j = this.array.length;
+        while (j--) {
+            if (cursor < 0) {
+                cursor = this.array.length - 1; 
+            }
+            callback(cursor, this.array);
+            cursor--;
         }
     }
 

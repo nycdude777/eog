@@ -11,14 +11,27 @@ export default () => (
 
         <xo.GraphNode 
             menuItem
+            id="line-chart" 
             name="LineChart" 
             allowDrag={false}
             allowDrop={true} 
             placeholder={<LineChartIcon />}
             render={(props, ref) => {
-                const { data, children, datasources, scope, setData, ...other } = props;
-                initDataAggregator(props);
-                return LineChart({...other, data: data.timeseries, children}, ref);
+                
+                const { data, graphContext, parent, siblings, children, datasources, scope, setData, className, ...other } = props;
+                const classes = ['widget', className];
+                if (siblings === 0) classes.push('fill'); 
+                if (siblings > 0) classes.push('grow'); 
+
+                initDataAggregator({
+                    ...props, 
+                    projectSet: (data) => ({ 
+                        timeseries: data
+                    }),
+                    bufferLength: 30 * 60,
+                });
+
+                return LineChart({...other, data: data.timeseries, children, className: classes.join(' ')}, ref);
             }} 
             meta={{
                 type: 'widget.lineChart',
