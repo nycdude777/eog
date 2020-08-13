@@ -30,7 +30,7 @@ export default () => {
 
     if (metrics.length === 0) return null;
 
-    return <div className="flex column spaced" >
+    return <div className="flex wrap spaced" >
         {
             metrics.map((key, index) => {
                 return <MetricSourceNode key={key} name={key} />
@@ -96,15 +96,16 @@ const MetricSourceNode = (props) => {
 }
 
 const MeasurementDisplay = ({at, metric, value, unit}) => {
-    return <Paper elevation={3} className="square relative">
+
+    return <Paper elevation={3} className="square relative hover-highlight">
         <div className="fill flex cell">
             <div className="flex column">
-                 <Typography variant="caption" display="block" gutterBottom>
-                     {camelToSentenceCase(metric)} ({unit})
-                 </Typography>
-                 <div style={{fontSize: '1.2rem', textAlign: 'center'}}>
-                     {value}
-                 </div>
+                <div style={{fontSize: '0.8em', fontWeight: 100, textAlign: 'center'}}>
+                    {camelToSentenceCase(metric)}
+                </div>
+                <div style={{fontSize: '1.2rem', textAlign: 'center'}}>
+                    {value}
+                </div>
              </div>
         </div>
     </Paper>

@@ -7,11 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import * as app from '../components';
 import theme from './theme';
 
-import './css/flex.css';
-import './css/additive.css';
-import './css/exograph.css';
-import './css/menu.css';
-import './css/accordion.css';
+import './css/scrollbar.css';
+import 'exograph/dist/css/flex.css';
+import 'exograph/dist/css/additive.css';
+import 'exograph/dist/css/exograph.css';
+import 'exograph/dist/css/menu.css';
+import 'exograph/dist/css/accordion.css';
 
 import createStore from '../store';
 import UrqlContext from './urqlContext';

@@ -16,7 +16,7 @@ export default () => {
   
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="transparent">
       <Toolbar>
         <Typography variant="h6" color="inherit" className={styles.classify('grow')} >
           {name} EOG React Visualization Assessment

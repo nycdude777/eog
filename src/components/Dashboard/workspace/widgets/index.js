@@ -7,7 +7,7 @@ import LineChart from './LineChart';
 import initDataAggregator from '../data/initDataAggregator';
 
 export default () => (
-    <div className="flex column padded">
+    <div className="flex wrap padded">
 
         <xo.GraphNode 
             menuItem
@@ -53,12 +53,9 @@ const GaugeIcon = (props) => {
 }
 
 const LineChartIcon = (props) => {
-    return <div className="relative placeholder"> 
-        <div className="fill canvas flex align-center" style={{fontSize: '150pt', opacity: 0.1}}>
+    return <div className="relative placeholder hover-highlight"> 
+        <div className="fill canvas flex align-center" style={{fontSize: '80pt'}}>
             &#8605;
-        </div>
-        <div className="fill canvas flex align-center" style={{fontSize: '12pt'}}>
-            Line Chart
         </div>
     </div>
 }

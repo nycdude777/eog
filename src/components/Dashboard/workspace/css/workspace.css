@@ -1,0 +1,69 @@
+.accordion {
+    margin-top: 1px;
+    width: 240px;
+}
+.accordion-section {
+    box-shadow: none!important;
+}
+.accordion-section-content {
+    padding: 0px!important;
+    padding-top: 1px!important;
+}
+
+.accordion-section.active .accordion-section-header {
+    background-color: rgba(128,128,128,0.5)!important;
+}
+.accordion-section:not(.active) .accordion-section-header:hover {
+    background-color: rgba(128,128,128,0.4)!important;
+}
+
+.flex.wrap > .graph-node {
+    width: calc(50% - 2px);
+    margin: 1px;
+}
+
+.accordion {
+    min-width: 280px;
+}
+
+.accordion-section-content .MuiPaper-root {
+    margin-bottom: 0px!important;
+}
+
+.hover-highlight {
+    color: rgba(255,255,255,0.4);
+}
+.hover-highlight:hover {
+    transition: all 0.2s linear;
+    background-color: #1976d2;
+    color: rgba(255,255,255,1);
+}
+.hover-highlight:hover .solid {
+    transition: all 0.2s linear;
+    background-color: rgba(255,255,255,1);
+}
+
+.draggable.--dragging {
+    border: none!important;
+    background-color: transparent!important;
+}
+
+.allow-drop.--active {
+    background-color: rgba(0,0,0,0.9)!important;
+    border: 2px dashed rgba(110,255,128,1)!important;
+}
+
+.menu {
+    width: 240px;
+}
+.menu .items > div:not(:last-child) {
+    margin-bottom: unset;
+}
+
+.info-pane {
+    height: 140px;
+    padding: 5px 7px!important;
+    font-size: 0.75rem;
+    font-weight: 100;
+    color: #bbb;
+}
