@@ -11,7 +11,7 @@ export default (props) => {
     return <div className="info-pane">
         <span className="topic">{camelToSentenceCase(info.topic)}</span>
         <p>
-            {info.description}
+            {info.description || 'Hover over menu items for help.'}
         </p>
         
     </div>
