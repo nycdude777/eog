@@ -50,8 +50,10 @@ const MetricSourceNode = (props) => {
 
     // Propagate new measurement
     const latestMeasurement = data ? data.latest : {};
+
+
     useEffect(()=>{
-        if (latestMeasurement.at) {
+        if (latestMeasurement && latestMeasurement.at) {
             relay.tick({at: latestMeasurement.at, key: latestMeasurement.metric, value: latestMeasurement.value });
         }
     }, [latestMeasurement, relay]);
@@ -59,7 +61,23 @@ const MetricSourceNode = (props) => {
     
     // History
     if (historyAvailable && !relay.history) {
-        relay.setHistory(data.buffer.stitch().map(x=>({ at: x.at, key: x.metric, value: x.value })), {at: latestMeasurement.at, key: latestMeasurement.metric, value: latestMeasurement.value });
+        const buffer = data.buffer.stitch();
+        
+        const timeSeries = buffer.map(x => {
+            if (!x.at) debugger;
+            return { 
+                at: x.at, 
+                key: x.metric, 
+                value: x.value 
+            }
+        });
+
+        if (latestMeasurement === null) debugger;
+
+        const latestOrDefaulMeasurement = latestMeasurement || timeSeries[timeSeries.length-1];
+        const latest = {at: latestOrDefaulMeasurement.at, key: latestOrDefaulMeasurement.metric, value: latestOrDefaulMeasurement.value };
+
+        relay.setHistory(timeSeries, latest);
     }
 
     const client = useClient();

@@ -16,7 +16,7 @@ export default () => (
 
         <xo.GraphNode 
             menuItem
-            id="line-chart" 
+            id="lineChart" 
             name="LineChart" 
             allowDrag={false}
             allowDrop={true} 

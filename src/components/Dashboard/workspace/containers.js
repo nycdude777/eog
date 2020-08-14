@@ -98,7 +98,7 @@ export default () => {
 
         <xo.GraphNode 
             menuItem 
-            id="expandingcell"
+            id="expandingCell"
             name="GrowthContainer" 
             allowDrag={false} 
             allowDrop={true} 

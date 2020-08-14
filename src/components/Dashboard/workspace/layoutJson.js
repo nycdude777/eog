@@ -1,49 +1,88 @@
 const layout = {
   root: [
     {
-      row: [
-        {
+      column: [
+        
+        { 
           'cell:0': [
             {
-              column: [
-                { 'cell:0': [
-                  { 
-                    gauge: [
-                      // { 'flareTemp?': [] }
-                    ] 
-                  }
-                ] },
-                { 'cell:1': [] },
-                { 'cell:2': [] },
+              row: [
+                { 
+                  'cell:0': [
+                    { gauge: [ { 'flareTemp?': [] } ] }
+                  ] 
+                },
+                { 
+                  'expandingCell:0': [
+                    { lineChart: [ { 'flareTemp?': [] } ] }
+                  ] 
+                },
               ]
             }
           ],
         },
 
-        {
-          'expandingcell:1': [
+        { 
+          'cell:1': [
             {
-              column: [
-                {
+              row: [
+                { 
                   'cell:0': [
-                    {
-                      'line-chart': [],
-                    },
-                  ],
+                    { gauge: [ { 'tubingPressure?': [] } ] }
+                  ] 
                 },
-
-                {
-                  'expandingcell:1': [
-                    {
-                      'line-chart': [],
-                    },
-                  ],
+                { 
+                  'expandingCell:0': [
+                    { lineChart: [ { 'tubingPressure?': [] } ] }
+                  ] 
                 },
-
-              ],
-            },
+              ]
+            }
           ],
         },
+
+        { 
+          'cell:2': [
+            {
+              row: [
+                { 
+                  'cell:0': [
+                    
+                  ] 
+                },
+                { 
+                  'expandingCell:0': [
+                    { row: [
+                      { "expandingCell:0": []  },
+                      { "expandingCell:1": []  }
+                    ] }
+                  ] 
+                },
+              ]
+            }
+          ],
+        },
+
+        { 
+          'cell:3': [
+            {
+              row: [
+                { 
+                  'cell:0': [
+                    
+                  ] 
+                },
+                { 
+                  'expandingCell:0': [
+                    
+                  ] 
+                },
+              ]
+            }
+          ],
+        },
+        
+
       ],
     },
   ],
