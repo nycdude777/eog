@@ -1,8 +1,14 @@
 import React from 'react';
 import xo from 'exograph';
 
-export default () => (
-    <div className="flex wrap padded items">
+import { useDispatch } from 'react-redux';
+import { actions as infoActions } from '../../../Features/Info/reducer';
+
+export default () => {
+
+    const dispatch = useDispatch();
+
+    return <div className="flex wrap padded items">
 
         <xo.GraphNode 
             menuItem
@@ -10,7 +16,7 @@ export default () => (
             name="Row" 
             allowDrag={false}
             allowDrop={true} 
-            placeholder={<RowLayout />}
+            placeholder={<RowLayout dispatch={dispatch} />}
             render={(props, ref) => {
                 const { data, graphContext, parent, siblings, children, datasources, scope, setData, className, ...other } = props;
                 const classes = [];
@@ -39,7 +45,7 @@ export default () => (
             name="Column" 
             allowDrag={false} 
             allowDrop={true} 
-            placeholder={<ColLayout />}
+            placeholder={<ColLayout dispatch={dispatch} />}
             render={(props, ref) => {
                 const { data, graphContext, parent, siblings, children, datasources, scope, setData, className, ...other } = props;
                 const classes = [];
@@ -68,7 +74,7 @@ export default () => (
             name="TightContainer" 
             allowDrag={false} 
             allowDrop={true} 
-            placeholder={<TightLayout />}
+            placeholder={<TightLayout dispatch={dispatch} />}
             render={(props, ref) => {
                 const { data, graphContext, parent, siblings, children, datasources, scope, setData, className, ...other } = props;
                 const classes = [];
@@ -96,7 +102,7 @@ export default () => (
             name="GrowthContainer" 
             allowDrag={false} 
             allowDrop={true} 
-            placeholder={<GrowthLayout />}
+            placeholder={<GrowthLayout dispatch={dispatch} />}
             render={(props, ref) => {
                 const { data, graphContext, parent, siblings, children, datasources, scope, setData, className, ...other } = props;
                 const classes = [];
@@ -121,21 +127,37 @@ export default () => (
         />
 
     </div>
-)
+}
 
 const RowLayout = (props) => {
-    return <div className="relative placeholder hover-highlight"> 
+    
+    const mouseEvents = {
+        onMouseEnter: () => props.dispatch(infoActions.setInfo({ 
+            topic: 'Row', 
+            description: 'All items placed in this container will be arranged horizontally.' 
+        })),
+        onMouseLeave: () => props.dispatch(infoActions.clear()),
+    };
+
+    return <div className="relative placeholder hover-highlight" {...mouseEvents}> 
         <div className="fill flex row spaced" style={{padding: '5px'}}>
             <div className="grow align-self-stretch solid"></div>
             <div className="grow align-self-stretch solid"></div>
-            
-            
         </div>
     </div>
 }
 
 const ColLayout = (props) => {
-    return <div className="relative placeholder hover-highlight"> 
+
+    const mouseEvents = {
+        onMouseEnter: () => props.dispatch(infoActions.setInfo({ 
+            topic: 'Column', 
+            description: 'All items placed in this container will be arranged vertically.' 
+        })),
+        onMouseLeave: () => props.dispatch(infoActions.clear()),
+    };
+
+    return <div className="relative placeholder hover-highlight" {...mouseEvents}> 
         <div className="fill flex column spaced" style={{padding: '5px'}}>
             <div className="grow align-self-stretch solid"></div>
             <div className="grow align-self-stretch solid"></div>
@@ -144,7 +166,16 @@ const ColLayout = (props) => {
 }
 
 const TightLayout = (props) => {
-    return <div className="relative placeholder hover-highlight"> 
+
+    const mouseEvents = {
+        onMouseEnter: () => props.dispatch(infoActions.setInfo({ 
+            topic: 'Cell', 
+            description: 'Non-expanding Single item container.' 
+        })),
+        onMouseLeave: () => props.dispatch(infoActions.clear()),
+    };
+
+    return <div className="relative placeholder hover-highlight" {...mouseEvents}> 
         <div className="fill" style={{padding: '5px'}}>
             <div className="solid absolute" style={{width: "50%", height: "50%"}}> 
             </div>
@@ -153,7 +184,16 @@ const TightLayout = (props) => {
 }
 
 const GrowthLayout = (props) => {
-    return <div className="relative placeholder hover-highlight"> 
+
+    const mouseEvents = {
+        onMouseEnter: () => props.dispatch(infoActions.setInfo({ 
+            topic: 'Expander Cell', 
+            description: 'Auto-expanding single item container.' 
+        })),
+        onMouseLeave: () => props.dispatch(infoActions.clear()),
+    };
+
+    return <div className="relative placeholder hover-highlight" {...mouseEvents}> 
         <div className="fill flex column" style={{padding: '5px'}}>
             <div className="flex grow"> 
                 <div className="grow align self stretch solid"></div>

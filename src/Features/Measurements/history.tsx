@@ -49,8 +49,6 @@ export default (props: { metric: string, enabled: boolean }) => {
       
       if (!data) return;
 
-      debugger;
-
       dispatch(actions.multipleMeasurementsReceived(data));
 
   }, [dispatch, fetching, data, error]);
