@@ -16,6 +16,8 @@ query($input: [MeasurementQuery]) {
 
 async function executeHistoryQuery(metric, client, dispatch) {
 
+    console.log('Get history for ' + metric);
+    
     const result = await client.query(
         query, 
         {
