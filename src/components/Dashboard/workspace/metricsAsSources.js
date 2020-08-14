@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import xo from 'exograph';
 import xod from './data';
 import _ from 'lodash';
 import Metrics from '../../../Features/Metrics';
-
 import executeHistoryQuery from './executeHistoryQuery';
-
 import { useDispatch, useSelector } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
-
 import {camelToSentenceCase} from './util/string';
-import Typography from '@material-ui/core/Typography';
 import { useClient } from 'urql';
-
 import { actions as infoActions } from '../../../Features/Info/reducer';
 
 export default () => {
@@ -59,7 +54,7 @@ const MetricSourceNode = (props) => {
         if (latestMeasurement.at) {
             relay.tick({at: latestMeasurement.at, key: latestMeasurement.metric, value: latestMeasurement.value });
         }
-    }, [latestMeasurement.at]);
+    }, [latestMeasurement, relay]);
 
     
     // History

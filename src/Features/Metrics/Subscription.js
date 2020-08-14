@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import { useSubscription } from 'urql';
 import { actions } from '../Measurements/reducer';
 import Snackbar from '../SnackBuffet';
@@ -26,7 +26,7 @@ export default (props) => {
                 dispatch(actions.measurementReceived(data));
             }
         }
-    }, [data, fetching, error]);
+    }, [dispatch, data, fetching, error]);
       
     return <>
         {

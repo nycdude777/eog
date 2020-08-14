@@ -4,7 +4,7 @@ import TimeseriesAggregator from './TimeseriesAggregator';
 
 export default function initDataAggregator (props) {
 
-    const { bufferLength, projectPoint, projectSet, data, children, datasources, scope, setData, className, ...other } = props;
+    const { bufferLength, projectPoint, projectSet, datasources, scope } = props;
     
     const dsKeys = Object.keys(datasources);
     if (!dsKeys.length) return;

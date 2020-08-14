@@ -32,8 +32,6 @@ export type MetricData = {
 
 const initialState: {[index:string]: MetricData} = {};
 
-var initialized = false;
-
 const slice = createSlice({
   name: 'measurements',
   initialState,
@@ -59,7 +57,6 @@ const slice = createSlice({
           state[result.metric] = { latest: null, buffer: null };
         }
         state[result.metric].buffer = CircularBuffer.fromArray(result.measurements);
-        initialized = true;
       });
       
     },
