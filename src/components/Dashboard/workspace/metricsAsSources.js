@@ -3,7 +3,7 @@ import xo from 'exograph';
 import xod from './data';
 import _ from 'lodash';
 import Metrics from '../../../Features/Metrics';
-//import History from '../../../Features/Measurements/history';
+
 import executeHistoryQuery from './executeHistoryQuery';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,13 +13,13 @@ import {camelToSentenceCase} from './util/string';
 import Typography from '@material-ui/core/Typography';
 import { useClient } from 'urql';
 
+import { actions as infoActions } from '../../../Features/Info/reducer';
+
 export default () => {
 
     const metricsQueryInitialized = React.useRef(false);
 
     const metrics = useSelector((state) => {
-        // Life gets a bit easier when using lodash.get() to do multi-level invokations...
-        //   (i.e. its safe because it auto-checks for nulls and doesn't blow up.
         return _.get(state, 'metrics.getMetrics');
     });
         
@@ -97,7 +97,17 @@ const MetricSourceNode = (props) => {
 
 const MeasurementDisplay = ({at, metric, value, unit}) => {
 
-    return <Paper elevation={3} className="square relative hover-highlight">
+    const dispatch = useDispatch();
+
+    const mouseEvents = {
+        onMouseEnter: () => dispatch(infoActions.setInfo({ 
+            topic: metric, 
+            description: 'You can drag and drop this metric onto a Widget like a chart to visualize its data.' 
+        })),
+        onMouseLeave: () => dispatch(infoActions.clear()),
+    };
+
+    return <Paper elevation={3} className="square relative hover-highlight" {...mouseEvents}>
         <div className="fill flex cell">
             <div className="flex column">
                 <div style={{fontSize: '0.8em', fontWeight: 100, textAlign: 'center'}}>
