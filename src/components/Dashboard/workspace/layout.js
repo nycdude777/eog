@@ -1,13 +1,11 @@
 
 import React from 'react';
-import _ from 'lodash';
 import xo from 'exograph';
 
 import Subscription from '../../../Features/Metrics/Subscription';
 
 import Containers from './containers';
 import Widgets from './widgets';
-import Sources from './sources';
 
 import layoutJson from './layoutJson';
 

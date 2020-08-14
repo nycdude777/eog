@@ -1,5 +1,3 @@
-const Pi2 = Math.PI * 2;
-
 export default class Relay {
     
     history;

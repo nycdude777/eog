@@ -1,6 +1,5 @@
 // LineChart widget
 import React from 'react';
-import uuid from 'uuid/v4';
 import {camelToSentenceCase} from '../../util/string';
 import './style.css';
 import {getRandomColor, webSafe as colors} from '../colors';
@@ -60,9 +59,9 @@ export default (props, ref) => {
     );
 }
 
-const CustomXAxisLabel = (props) => {
-    return null;
-}
+// const CustomXAxisLabel = (props) => {
+//     return null;
+// }
 
 const CustomTooltip = (props) => {
       

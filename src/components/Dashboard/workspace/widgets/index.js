@@ -1,7 +1,7 @@
 import React from 'react';
 import xo from 'exograph';
 
-import Gauge from './Gauge';
+// import Gauge from './Gauge';
 import LineChart from './LineChart';
 
 import initDataAggregator from '../data/initDataAggregator';
@@ -43,14 +43,14 @@ export default () => (
 )
 
 
-const GaugeIcon = (props) => {
-    return <div className="relative placeholder"> 
-        <div className="fill canvas flex align-center" style={{fontSize: '48pt'}}>
-            {/* &#8631; */}
-            <Gauge id={'gaugeWidgetIcon'} />
-        </div>
-    </div>
-}
+// const GaugeIcon = (props) => {
+//     return <div className="relative placeholder"> 
+//         <div className="fill canvas flex align-center" style={{fontSize: '48pt'}}>
+//             {/* &#8631; */}
+//             <Gauge id={'gaugeWidgetIcon'} />
+//         </div>
+//     </div>
+// }
 
 const LineChartIcon = (props) => {
     return <div className="relative placeholder hover-highlight"> 
