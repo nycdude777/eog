@@ -8,10 +8,14 @@
 }
 
 .recharts-legend-wrapper {
-    font-size: 0.8em;
-    bottom: 20px!important;
+    /* font-size: 0.8em; */
+    bottom: 27px!important;
 }
 
 .recharts-legend-wrapper ul {
     text-align: right!important;
+}
+
+.recharts-wrapper {
+    margin-top: 20px;
 }

@@ -69,3 +69,33 @@
     font-weight: 100;
     color: #bbb;
 }
+
+.placeholder img {
+    width: calc(100% - 50px);
+    filter: invert(1);
+    opacity: 0.4;
+    margin: 25px;
+}
+
+.hover-highlight:hover img {
+    transition: all 0.2s linear;
+    opacity: 1;
+}
+
+
+.gauge-labels {}
+.gauge-name-label {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 13px;
+    font-size: 0.7rem;
+    color: #ffffff88;
+}
+.gauge-value-label {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 30px;
+    font-size: 2em;
+}
